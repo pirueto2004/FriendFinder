@@ -151,7 +151,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/pirueto2004/FriendFinder">GitHub Repo</a></p>
+        <p><a href="/"><strong>Home Page</strong></a> | <a href="/api/friends"><strong>API Friends List</strong></a> | <a href="https://github.com/pirueto2004/FriendFinder"><strong> GitHub Repo</strong></a></p>
       </div>
     </footer>
     
@@ -161,7 +161,7 @@
   <div id="resultsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-notify modal-info" role="document">
         <!--Content-->
-        <div class="modal-content">
+        <div class="modal-content text-center">
           <!--Header-->
           <div class="modal-header">
             <h2 class="heading">Best Match</h2>
@@ -174,7 +174,7 @@
           <!--Body-->
           <div class="modal-body">
             <h2 id="matchName"></h2>
-            <img id="matchImg" class="img-fluid" src="https://mdbootstrap.com/wp-content/uploads/2016/11/admin-dashboard-bootstrap.jpg" alt="">
+            <img id="matchImage" class="img-fluid" src="" alt="">
             
 
           </div>
@@ -223,7 +223,7 @@
                 // Create an object for the user's data
                 var userInput = {
                         name: $("#name").val().trim(),
-                        photo: $("#photo").val().trim(),
+                        photo: $("#photo").val(),
                         scores: [
                                   $("#q1").val().trim(),
                                   $("#q2").val().trim(),
@@ -237,15 +237,18 @@
                                   $("#q10").val().trim() 
                                 ]
                 };
+               
+                $("#friendsForm").html($("<div>", {class: 'alert alert-danger mt-3 mb-3 text-center'}) 
+                                 .append($("<h3>").text("Thanks for your submission! Meet your new best friend!"))  
+                );
 
-                $("#friendsForm").html("Thanks for your submission! Meet your new best friend!");
-
+                
                 // Grab the URL of the website
                 var currentURL = window.location.origin;
                 $.post(currentURL + "/api/friends", userInput)
                     .done(function(data) {
                       // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                      $("#matchName").text(data.name);
+                      $("#matchName").html(data.name);
                       $("#matchImage").attr("src", data.photo);    
                       // Show the modal with the best match                
                       $("#resultsModal").modal('toggle');

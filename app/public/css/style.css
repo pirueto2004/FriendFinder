@@ -20,26 +20,14 @@ header,
     padding: 0;
 }
 
-/* .jumbotron {
-    background-color: #fbd1e2 !important;
-    color: white;
-    opacity: .75;
-    margin-top: 20px;
+.modal {
+    margin-top: 5%;
 }
 
-#submit {
-    background: firebrick;
-}
-
-#jumbo_h2 {
-    color: white;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
-} */
 #survey {
     border-radius: 30px;
+}
+#matchImage {
+    width: 100%;
+    max-width: 300px;
 }

@@ -1,6 +1,7 @@
 // Series of npm packages
 var bodyParser = require('body-parser');
 var express = require('express');
+var fs = require('fs');
 var path = require('path'); //Node.js built-in package
 var app = express();
 
@@ -14,7 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static(__dirname + "/app/public"));
-
 
 //The Routes...
 //Includes html-routes.js and api-routes.js in the server.js file and use Express
