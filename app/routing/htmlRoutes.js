@@ -8,8 +8,6 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname + '/../public/survey.html'));
     });
 
-
-    
     //Sends the file 'home.html' to the web client whenever the path is the root '/' or If no matching route is found default to home
     app.use(function(req, res) {
         res.sendFile(path.join(__dirname + '/../public/home.html'));
