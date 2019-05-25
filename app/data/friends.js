@@ -1,7 +1,7 @@
 var friends = [
     {
     name: "Beyonce Knowles",
-    photo: "http://www.billboard.com/files/styles/article_main_image/public/media/beyonce-feb-2014-billboard-650.jpg",
+    photo: "https://ichef.bbci.co.uk/news/660/cpsprodpb/1AEE/production/_102849860_420dd9fd-ed9c-4c75-b1fa-67d276834c01.jpg",
     scores: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]
     },
     {
@@ -11,12 +11,12 @@ var friends = [
     },
     {
         name: "Louis T. Delia",
-        photo: "https://placehold.it/400x400",
+        photo: "https://pbs.twimg.com/profile_images/639214960049000449/lNCRC-ub.jpg",
         scores: [3, 3, 4, 2, 2, 1, 3, 2, 2, 3]
     },
     {
-        name: "Lou Ritter",
-        photo: "https://placehold.it/400x400",
+        name: "Louis Ritter",
+        photo: "https://avatars2.githubusercontent.com/u/16635899?s=400&v=4",
         scores: [4, 3, 4, 1, 5, 2, 5, 3, 1, 4]
     },
     {
@@ -33,6 +33,21 @@ var friends = [
         name: "Steven Mason",
         photo: "https://masoninvestigations.com/wp-content/uploads/2017/03/stevepro.jpg",
         scores: [4, 2, 4, 1, 2, 3, 5, 1, 4, 4]
+    },
+    {
+        "name": "Julio",
+        "photo": "https://drive.google.com/open?id=1EiD861u7SLQUpHgXE-EtdUHv6Er6LFDQ",
+        "scores": [3, 4, 3, 2, 4, 2, 4, 4, 5, 4]
+    },
+    {
+        "name": "Madonna",
+        "photo": "https://www.billboard.com/files/styles/article_main_image/public/media/madonna-2003-billboard-1548.jpg",
+        "scores": [2, 3, 3, 4, 4, 3, 5, 4, 5, 5]
+    },
+    {
+        "name": "Taylor Swift",
+        "photo": "https://www.billboard.com/files/styles/article_main_image/public/media/taylor-swift-2014-vs-show-billboard-1548.jpg",
+        "scores": [5, 2, 2, 3, 4, 4, 2, 4, 3, 5]
     }
     
     ];

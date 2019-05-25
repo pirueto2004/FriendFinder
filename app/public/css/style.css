@@ -20,8 +20,8 @@ header,
     padding: 0;
 }
 
-.modal {
-    margin-top: 5%;
+#resultsModal {
+    margin-top: 6%;
 }
 
 #survey {
@@ -31,3 +31,10 @@ header,
     width: 100%;
     max-width: 300px;
 }
+#gradient {
+    background: #9ce3f0;
+    background: linear-gradient(to right, #fcfbf8, #a8f3e3 85%, #79bef3);
+    width: 100%;
+    height: auto;
+    margin:0 auto;
+  }

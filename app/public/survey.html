@@ -157,6 +157,27 @@
     
   </div>
 
+  <!--Modal: modalUser-->
+  <div class="modal fade top mt-0" id="modalUser" tabindex="1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="true">
+  <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+
+          <h3 class="pt-3 pr-2 mr-3">"Thanks for your submission! Meet your new best friend!"</h3>
+
+          <a type="button" class="btn btn-primary waves-effect" data-dismiss="modal"> Ok </a>
+        </div>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+  </div>
+  <!--Modal: modalUser-->
+
   <!-- Modal: Begin -->
   <div id="resultsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-notify modal-info" role="document">
@@ -222,7 +243,7 @@
             if (validateForm() == true) {
                 // Create an object for the user's data
                 var userInput = {
-                        name: $("#name").val().trim(),
+                        name: $("#name").val(),
                         photo: $("#photo").val(),
                         scores: [
                                   $("#q1").val().trim(),
@@ -237,12 +258,10 @@
                                   $("#q10").val().trim() 
                                 ]
                 };
-               
-                $("#friendsForm").html($("<div>", {class: 'alert alert-danger mt-3 mb-3 text-center'}) 
-                                 .append($("<h3>").text("Thanks for your submission! Meet your new best friend!"))  
-                );
 
-                
+                // Show the modal notifying that the user submission was successful      
+                $("#modalUser").modal('toggle');
+                                
                 // Grab the URL of the website
                 var currentURL = window.location.origin;
                 $.post(currentURL + "/api/friends", userInput)
