@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Survey Page</title>
+	<title>Friend Finder App | Julio Bell</title>
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    
-<body>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+<body id="mybody">
 
 	<div class="container">
-
-        <h2>Survey Questions</h2>
-        <hr>
+      <form role="form" id="friendsForm">
     
         <h3><strong>About You</strong></h3>
         <h4>Name (Required)</h4>
@@ -145,116 +146,119 @@
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
          Submit</button>
-    
+    </form>
         <hr>
-        <footer class="footer">
-          <div class="container">
-            <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
-          </div>
-        </footer>
-    
+
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/pirueto2004/FriendFinder">GitHub Repo</a></p>
       </div>
+    </footer>
     
-      <!-- Modal -->
-      <div id="results-modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-    
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h2 class="modal-title"><strong>Best Match</strong></h2>
-            </div>
-            <div class="modal-body">
-              <h2 id="match-name"></h2>
-              <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+  </div>
+
+  <!-- Modal: Begin -->
+  <div id="resultsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Header-->
+          <div class="modal-header">
+            <h2 class="heading">Best Match</h2>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
           </div>
-    
+
+          <!--Body-->
+          <div class="modal-body">
+            <h2 id="matchName"></h2>
+            <img id="matchImg" class="img-fluid" src="https://mdbootstrap.com/wp-content/uploads/2016/11/admin-dashboard-bootstrap.jpg" alt="">
+            
+
+          </div>
+
+          <!--Footer-->
+          <div class="modal-footer justify-content-center">
+              <a type="button" class="btn btn-outline-primary waves-effect close" data-dismiss="modal">Close</a>
+          </div>
         </div>
-      </div>
+        <!--Content-->
+    </div>
+  </div>
+  <!-- Modal: End -->
     
-      <script type="text/javascript">
-        // Chosen CSS
-        var config = {
-          ".chosen-select": {},
-          ".chosen-select-deselect": {
-            allow_single_deselect: true
-          },
-          ".chosen-select-no-single": {
-            disable_search_threshold: 10
-          },
-          ".chosen-select-no-results": {
-            no_results_text: "Oops, nothing found!"
-          },
-          ".chosen-select-width": {
-            width: "95%"
-          }
-        };
+     
+   
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+ <script type="text/javascript">
     
-        for (var selector in config) {
-          $(selector).chosen(config[selector]);
-        }
-    
-        // Capture the form inputs
+        // Capture the form inputs 
         $("#submit").on("click", function(event) {
           event.preventDefault();
-    
-          // Form validation
-          function validateForm() {
-            var isValid = true;
-            $(".form-control").each(function() {
-              if ($(this).val() === "") {
-                isValid = false;
-              }
-            });
-    
-            $(".chosen-select").each(function() {
-    
-              if ($(this).val() === "") {
-                isValid = false;
-              }
-            });
-            return isValid;
-          }
-    
-          // If all required fields are filled
-          if (validateForm()) {
-            // Create an object for the user"s data
-            var userData = {
-              name: $("#name").val(),
-              photo: $("#photo").val(),
-              scores: [
-                $("#q1").val(),
-                $("#q2").val(),
-                $("#q3").val(),
-                $("#q4").val(),
-                $("#q5").val(),
-                $("#q6").val(),
-                $("#q7").val(),
-                $("#q8").val(),
-                $("#q9").val(),
-                $("#q10").val()
-              ]
+            // Form validation
+            function validateForm() {
+                var isValid = true;
+                $('.form-control').each(function() {
+                    if ($(this).val() === '')
+                        isValid = false;
+                });
+                $('.chosen-select').each(function() {
+                    if ($(this).val() === "")
+                        isValid = false
+                })
+                return isValid;
             };
-    
-            // AJAX post the data to the friends API.
-            $.post("/api/friends", userData, function(data) {
-    
-              // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-              $("#match-name").text(data.name);
-              $("#match-img").attr("src", data.photo);
-    
-              // Show the modal with the best match
-              $("#results-modal").modal("toggle");
-    
-            });
-          } else {
-            alert("Please fill out all fields before submitting!");
-          }
+
+            // If all required fields are filled
+            if (validateForm() == true) {
+                // Create an object for the user's data
+                var userInput = {
+                        name: $("#name").val().trim(),
+                        photo: $("#photo").val().trim(),
+                        scores: [
+                                  $("#q1").val().trim(),
+                                  $("#q2").val().trim(),
+                                  $("#q3").val().trim(),
+                                  $("#q4").val().trim(),
+                                  $("#q5").val().trim(),
+                                  $("#q6").val().trim(),
+                                  $("#q7").val().trim(),
+                                  $("#q8").val().trim(),
+                                  $("#q9").val().trim(),
+                                  $("#q10").val().trim() 
+                                ]
+                };
+
+                $("#friendsForm").html("Thanks for your submission! Meet your new best friend!");
+
+                // Grab the URL of the website
+                var currentURL = window.location.origin;
+                $.post(currentURL + "/api/friends", userInput)
+                    .done(function(data) {
+                      // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                      $("#matchName").text(data.name);
+                      $("#matchImage").attr("src", data.photo);    
+                      // Show the modal with the best match                
+                      $("#resultsModal").modal('toggle');
+                });
+                
+            } else {
+                alert("Please fill out all fields before submitting!");
+            }
+            return false;
+        });
+
+        $(".close").on("click", function(){
+          setTimeout(function(){location.reload()}, 1000);
         });
       </script>
     
