@@ -12,11 +12,33 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 <body id="mybody">
-
-	<div class="container">
+  <!--Navbar -->
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color fixed-top">
+      <a class="navbar-brand" href="/">FriendFinder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/survey">Survey</a>
+            <span class="sr-only">(current)</span>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </nav>
+    <!--/.Navbar -->
+	<div class="container mt-5">
+    
       <form role="form" id="friendsForm">
     
-        <h3><strong>About You</strong></h3>
+        <h3 class="pt-5 mb-4"><strong>About You</strong></h3>
         <h4>Name (Required)</h4>
         <input type="text" id="name" class="form-control" required>
     
